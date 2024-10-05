@@ -67,16 +67,8 @@ mod tests {
                     REG_ADDRESS_OF_DATA_AFTER_CODE,
                     WORD_SIZE as u16,
                 ),
-                // extend the stack
-                op::cfe(REG_GENERAL_USE),
-                // move to the start of the newly allocated stack
-                op::sub(REG_START_OF_DATA_SECTION, RegId::SP, REG_GENERAL_USE),
-                // load the data section onto the stack
-                op::mcp(
-                    REG_START_OF_DATA_SECTION,
-                    REG_ADDRESS_OF_DATA_AFTER_CODE,
-                    REG_GENERAL_USE,
-                ),
+                // load the data section
+                op::ldc(REG_START_OF_DATA_SECTION, 0, REG_GENERAL_USE, 2),
                 op::add(0x16, 0x16, REG_GENERAL_USE),
                 op::logd(RegId::ZERO, RegId::ZERO, REG_START_OF_LOADED_CODE, 0x16),
                 // Jump into the memory where the contract is loaded.
@@ -172,7 +164,7 @@ mod tests {
 
         let raw_code = hex::encode(std::fs::read("./script/out/release/script.bin").unwrap());
 
-        assert_eq!(log_data, raw_code);
+        pretty_assertions::assert_eq!(log_data, raw_code);
 
         let expected_value = (
             true,

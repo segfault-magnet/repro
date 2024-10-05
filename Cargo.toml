@@ -4,9 +4,26 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+fuels = { git = "https://github.com/FuelLabs/fuels-rs", rev = "72649dac", features = [
+  "fuel-core-lib",
+] }
 hex = "0.4.3"
 pretty_assertions = "1.4"
 tempfile = "3.13.0"
 fuel-asm = "0.57.1"
-fuels = "0.66.5"
 tokio = { version = "1.40.0", features = ["full"] }
+
+[patch.crates-io]
+fuel-vm = { git = "https://github.com/FuelLabs/fuel-vm", branch = "feature/ldc-mode-2" }
+fuel-asm = { git = "https://github.com/FuelLabs/fuel-vm", branch = "feature/ldc-mode-2" }
+fuel-crypto = { git = "https://github.com/FuelLabs/fuel-vm", branch = "feature/ldc-mode-2" }
+fuel-merkle = { git = "https://github.com/FuelLabs/fuel-vm", branch = "feature/ldc-mode-2" }
+fuel-storage = { git = "https://github.com/FuelLabs/fuel-vm", branch = "feature/ldc-mode-2" }
+fuel-tx = { git = "https://github.com/FuelLabs/fuel-vm", branch = "feature/ldc-mode-2" }
+fuel-types = { git = "https://github.com/FuelLabs/fuel-vm", branch = "feature/ldc-mode-2" }
+fuel-core = { git = "https://github.com/FuelLabs/fuel-core", branch = "feature/predicate-ldc" }
+fuel-core-chain-config = { git = "https://github.com/FuelLabs/fuel-core", branch = "feature/predicate-ldc" }
+fuel-core-client = { git = "https://github.com/FuelLabs/fuel-core", branch = "feature/predicate-ldc" }
+fuel-core-poa = { git = "https://github.com/FuelLabs/fuel-core", branch = "feature/predicate-ldc" }
+fuel-core-services = { git = "https://github.com/FuelLabs/fuel-core", branch = "feature/predicate-ldc" }
+fuel-core-types = { git = "https://github.com/FuelLabs/fuel-core", branch = "feature/predicate-ldc" }
